@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seeini.aqs.ReportSummaryMapper">
+  <resultMap id="BaseResultMap" type="com.seeini.aqs.ReportSummary">
+    <!--@mbg.generated-->
+    <!--@Table  report_summary-->
+    <id column="summary_id" jdbcType="INTEGER" property="summaryId" />
+    <result column="field_title" jdbcType="VARCHAR" property="fieldTitle" />
+    <result column="field_code" jdbcType="VARCHAR" property="fieldCode" />
+    <result column="report_id" jdbcType="INTEGER" property="reportId" />
+    <result column="is_active" jdbcType="INTEGER" property="isActive" />
+    <result column="expression_value" jdbcType="VARCHAR" property="expressionValue" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="sort_index" jdbcType="INTEGER" property="sortIndex" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    summary_id, field_title, field_code, report_id, is_active, expression_value, create_date,
+    create_user, update_date, update_user, sort_index
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from  report_summary
+    where summary_id = #{summaryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from  report_summary
+    where summary_id = #{summaryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="summary_id" keyProperty="summaryId" parameterType="com.seeini.aqs.ReportSummary" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into  report_summary (field_title, field_code, report_id,
+      is_active, expression_value, create_date,
+      create_user, update_date, update_user,
+      sort_index)
+    values (#{fieldTitle,jdbcType=VARCHAR}, #{fieldCode,jdbcType=VARCHAR}, #{reportId,jdbcType=INTEGER},
+      #{isActive,jdbcType=INTEGER}, #{expressionValue,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+      #{createUser,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR},
+      #{sortIndex,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="summary_id" keyProperty="summaryId" parameterType="com.seeini.aqs.ReportSummary" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into  report_summary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fieldTitle != null">
+        field_title,
+      </if>
+      <if test="fieldCode != null">
+        field_code,
+      </if>
+      <if test="reportId != null">
+        report_id,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="expressionValue != null">
+        expression_value,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="sortIndex != null">
+        sort_index,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fieldTitle != null">
+        #{fieldTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldCode != null">
+        #{fieldCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reportId != null">
+        #{reportId,jdbcType=INTEGER},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=INTEGER},
+      </if>
+      <if test="expressionValue != null">
+        #{expressionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="sortIndex != null">
+        #{sortIndex,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.seeini.aqs.ReportSummary">
+    <!--@mbg.generated-->
+    update  report_summary
+    <set>
+      <if test="fieldTitle != null">
+        field_title = #{fieldTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldCode != null">
+        field_code = #{fieldCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reportId != null">
+        report_id = #{reportId,jdbcType=INTEGER},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=INTEGER},
+      </if>
+      <if test="expressionValue != null">
+        expression_value = #{expressionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="sortIndex != null">
+        sort_index = #{sortIndex,jdbcType=INTEGER},
+      </if>
+    </set>
+    where summary_id = #{summaryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.seeini.aqs.ReportSummary">
+    <!--@mbg.generated-->
+    update  report_summary
+    set field_title = #{fieldTitle,jdbcType=VARCHAR},
+      field_code = #{fieldCode,jdbcType=VARCHAR},
+      report_id = #{reportId,jdbcType=INTEGER},
+      is_active = #{isActive,jdbcType=INTEGER},
+      expression_value = #{expressionValue,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      sort_index = #{sortIndex,jdbcType=INTEGER}
+    where summary_id = #{summaryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update  report_summary
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="field_title = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.fieldTitle,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="field_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.fieldCode,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="report_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.reportId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="is_active = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.isActive,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="expression_value = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.expressionValue,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="create_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.createDate,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="create_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.createUser,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="update_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.updateDate,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="update_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.updateUser,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="sort_index = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.sortIndex,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where summary_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.summaryId,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update  report_summary
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="field_title = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.fieldTitle != null">
+            when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.fieldTitle,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="field_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.fieldCode != null">
+            when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.fieldCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="report_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.reportId != null">
+            when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.reportId,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_active = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isActive != null">
+            when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.isActive,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="expression_value = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.expressionValue != null">
+            when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.expressionValue,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createDate != null">
+            when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.createDate,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createUser != null">
+            when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.createUser,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateDate != null">
+            when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.updateDate,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateUser != null">
+            when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.updateUser,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sort_index = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sortIndex != null">
+            when summary_id = #{item.summaryId,jdbcType=INTEGER} then #{item.sortIndex,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where summary_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.summaryId,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="summary_id" keyProperty="summaryId" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into  report_summary
+    (field_title, field_code, report_id, is_active, expression_value, create_date, create_user,
+      update_date, update_user, sort_index)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.fieldTitle,jdbcType=VARCHAR}, #{item.fieldCode,jdbcType=VARCHAR}, #{item.reportId,jdbcType=INTEGER},
+        #{item.isActive,jdbcType=INTEGER}, #{item.expressionValue,jdbcType=VARCHAR}, #{item.createDate,jdbcType=TIMESTAMP},
+        #{item.createUser,jdbcType=VARCHAR}, #{item.updateDate,jdbcType=TIMESTAMP}, #{item.updateUser,jdbcType=VARCHAR},
+        #{item.sortIndex,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="summary_id" keyProperty="summaryId" parameterType="com.seeini.aqs.ReportSummary" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into  report_summary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="summaryId != null">
+        summary_id,
+      </if>
+      field_title,
+      field_code,
+      report_id,
+      is_active,
+      expression_value,
+      create_date,
+      create_user,
+      update_date,
+      update_user,
+      sort_index,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="summaryId != null">
+        #{summaryId,jdbcType=INTEGER},
+      </if>
+      #{fieldTitle,jdbcType=VARCHAR},
+      #{fieldCode,jdbcType=VARCHAR},
+      #{reportId,jdbcType=INTEGER},
+      #{isActive,jdbcType=INTEGER},
+      #{expressionValue,jdbcType=VARCHAR},
+      #{createDate,jdbcType=TIMESTAMP},
+      #{createUser,jdbcType=VARCHAR},
+      #{updateDate,jdbcType=TIMESTAMP},
+      #{updateUser,jdbcType=VARCHAR},
+      #{sortIndex,jdbcType=INTEGER},
+    </trim>
+    on duplicate key update
+    <trim suffixOverrides=",">
+      <if test="summaryId != null">
+        summary_id = #{summaryId,jdbcType=INTEGER},
+      </if>
+      field_title = #{fieldTitle,jdbcType=VARCHAR},
+      field_code = #{fieldCode,jdbcType=VARCHAR},
+      report_id = #{reportId,jdbcType=INTEGER},
+      is_active = #{isActive,jdbcType=INTEGER},
+      expression_value = #{expressionValue,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      sort_index = #{sortIndex,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="summary_id" keyProperty="summaryId" parameterType="com.seeini.aqs.ReportSummary" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into  report_summary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="summaryId != null">
+        summary_id,
+      </if>
+      <if test="fieldTitle != null">
+        field_title,
+      </if>
+      <if test="fieldCode != null">
+        field_code,
+      </if>
+      <if test="reportId != null">
+        report_id,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="expressionValue != null">
+        expression_value,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="sortIndex != null">
+        sort_index,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="summaryId != null">
+        #{summaryId,jdbcType=INTEGER},
+      </if>
+      <if test="fieldTitle != null">
+        #{fieldTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldCode != null">
+        #{fieldCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reportId != null">
+        #{reportId,jdbcType=INTEGER},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=INTEGER},
+      </if>
+      <if test="expressionValue != null">
+        #{expressionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="sortIndex != null">
+        #{sortIndex,jdbcType=INTEGER},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="summaryId != null">
+        summary_id = #{summaryId,jdbcType=INTEGER},
+      </if>
+      <if test="fieldTitle != null">
+        field_title = #{fieldTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldCode != null">
+        field_code = #{fieldCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reportId != null">
+        report_id = #{reportId,jdbcType=INTEGER},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=INTEGER},
+      </if>
+      <if test="expressionValue != null">
+        expression_value = #{expressionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="sortIndex != null">
+        sort_index = #{sortIndex,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

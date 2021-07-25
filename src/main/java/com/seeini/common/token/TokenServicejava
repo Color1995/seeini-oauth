@@ -1,0 +1,22 @@
+package com.seeini.common.token;
+
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.seeini.system.entity.User;
+
+public class TokenService {
+
+    /**
+     * Token 生成方法
+     * @param user
+     * @return
+     */
+    public String getToken(User user) {
+
+        String token= JWT.create().withAudience(String.valueOf(user.getUserId()))
+                .sign(Algorithm.HMAC256(user.getPassword()));
+        
+        return token;
+    }
+
+}
