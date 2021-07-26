@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seeini.stack.mapper.GuidelinesDetailMapper">
+  <resultMap id="BaseResultMap" type="com.seeini.stack.entity.GuidelinesDetail">
+    <!--@mbg.generated-->
+    <!--@Table stack.t_guidelines_detail-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="guidelines_id" jdbcType="BIGINT" property="guidelinesId" />
+    <result column="guidelines_name" jdbcType="VARCHAR" property="guidelinesName" />
+    <result column="publisher_id" jdbcType="BIGINT" property="publisherId" />
+    <result column="publisher_name" jdbcType="VARCHAR" property="publisherName" />
+    <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.seeini.stack.entity.GuidelinesDetail">
+    <!--@mbg.generated-->
+    <!--@Table stack.t_guidelines_detail-->
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, title, guidelines_id, guidelines_name, publisher_id, publisher_name, publish_time, 
+    modify_time, is_delete
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--@mbg.generated-->
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from stack.t_guidelines_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from stack.t_guidelines_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.seeini.stack.entity.GuidelinesDetail" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into stack.t_guidelines_detail (title, guidelines_id, guidelines_name, 
+      publisher_id, publisher_name, publish_time, 
+      modify_time, is_delete, content
+      )
+    values (#{title,jdbcType=VARCHAR}, #{guidelinesId,jdbcType=BIGINT}, #{guidelinesName,jdbcType=VARCHAR}, 
+      #{publisherId,jdbcType=BIGINT}, #{publisherName,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.seeini.stack.entity.GuidelinesDetail" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into stack.t_guidelines_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="guidelinesId != null">
+        guidelines_id,
+      </if>
+      <if test="guidelinesName != null">
+        guidelines_name,
+      </if>
+      <if test="publisherId != null">
+        publisher_id,
+      </if>
+      <if test="publisherName != null">
+        publisher_name,
+      </if>
+      <if test="publishTime != null">
+        publish_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="guidelinesId != null">
+        #{guidelinesId,jdbcType=BIGINT},
+      </if>
+      <if test="guidelinesName != null">
+        #{guidelinesName,jdbcType=VARCHAR},
+      </if>
+      <if test="publisherId != null">
+        #{publisherId,jdbcType=BIGINT},
+      </if>
+      <if test="publisherName != null">
+        #{publisherName,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null">
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.seeini.stack.entity.GuidelinesDetail">
+    <!--@mbg.generated-->
+    update stack.t_guidelines_detail
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="guidelinesId != null">
+        guidelines_id = #{guidelinesId,jdbcType=BIGINT},
+      </if>
+      <if test="guidelinesName != null">
+        guidelines_name = #{guidelinesName,jdbcType=VARCHAR},
+      </if>
+      <if test="publisherId != null">
+        publisher_id = #{publisherId,jdbcType=BIGINT},
+      </if>
+      <if test="publisherName != null">
+        publisher_name = #{publisherName,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null">
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.seeini.stack.entity.GuidelinesDetail">
+    <!--@mbg.generated-->
+    update stack.t_guidelines_detail
+    set title = #{title,jdbcType=VARCHAR},
+      guidelines_id = #{guidelinesId,jdbcType=BIGINT},
+      guidelines_name = #{guidelinesName,jdbcType=VARCHAR},
+      publisher_id = #{publisherId,jdbcType=BIGINT},
+      publisher_name = #{publisherName,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.seeini.stack.entity.GuidelinesDetail">
+    <!--@mbg.generated-->
+    update stack.t_guidelines_detail
+    set title = #{title,jdbcType=VARCHAR},
+      guidelines_id = #{guidelinesId,jdbcType=BIGINT},
+      guidelines_name = #{guidelinesName,jdbcType=VARCHAR},
+      publisher_id = #{publisherId,jdbcType=BIGINT},
+      publisher_name = #{publisherName,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update stack.t_guidelines_detail
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="title = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.title,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="guidelines_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.guidelinesId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="guidelines_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.guidelinesName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="publisher_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.publisherId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="publisher_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.publisherName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="publish_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.publishTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="modify_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.modifyTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="is_delete = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.isDelete,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="content = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.content,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update stack.t_guidelines_detail
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="title = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.title != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.title,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="guidelines_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.guidelinesId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.guidelinesId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="guidelines_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.guidelinesName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.guidelinesName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="publisher_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.publisherId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.publisherId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="publisher_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.publisherName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.publisherName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="publish_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.publishTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.publishTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="modify_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.modifyTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.modifyTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_delete = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isDelete != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.isDelete,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="content = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.content != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.content,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into stack.t_guidelines_detail
+    (title, guidelines_id, guidelines_name, publisher_id, publisher_name, publish_time, 
+      modify_time, is_delete, content)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.title,jdbcType=VARCHAR}, #{item.guidelinesId,jdbcType=BIGINT}, #{item.guidelinesName,jdbcType=VARCHAR}, 
+        #{item.publisherId,jdbcType=BIGINT}, #{item.publisherName,jdbcType=VARCHAR}, #{item.publishTime,jdbcType=TIMESTAMP}, 
+        #{item.modifyTime,jdbcType=TIMESTAMP}, #{item.isDelete,jdbcType=INTEGER}, #{item.content,jdbcType=LONGVARCHAR}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.seeini.stack.entity.GuidelinesDetail" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into stack.t_guidelines_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      title,
+      guidelines_id,
+      guidelines_name,
+      publisher_id,
+      publisher_name,
+      publish_time,
+      modify_time,
+      is_delete,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{title,jdbcType=VARCHAR},
+      #{guidelinesId,jdbcType=BIGINT},
+      #{guidelinesName,jdbcType=VARCHAR},
+      #{publisherId,jdbcType=BIGINT},
+      #{publisherName,jdbcType=VARCHAR},
+      #{publishTime,jdbcType=TIMESTAMP},
+      #{modifyTime,jdbcType=TIMESTAMP},
+      #{isDelete,jdbcType=INTEGER},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      title = #{title,jdbcType=VARCHAR},
+      guidelines_id = #{guidelinesId,jdbcType=BIGINT},
+      guidelines_name = #{guidelinesName,jdbcType=VARCHAR},
+      publisher_id = #{publisherId,jdbcType=BIGINT},
+      publisher_name = #{publisherName,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateWithBLOBs" keyColumn="id" keyProperty="id" parameterType="com.seeini.stack.entity.GuidelinesDetail" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into stack.t_guidelines_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      title,
+      guidelines_id,
+      guidelines_name,
+      publisher_id,
+      publisher_name,
+      publish_time,
+      modify_time,
+      is_delete,
+      content,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{title,jdbcType=VARCHAR},
+      #{guidelinesId,jdbcType=BIGINT},
+      #{guidelinesName,jdbcType=VARCHAR},
+      #{publisherId,jdbcType=BIGINT},
+      #{publisherName,jdbcType=VARCHAR},
+      #{publishTime,jdbcType=TIMESTAMP},
+      #{modifyTime,jdbcType=TIMESTAMP},
+      #{isDelete,jdbcType=INTEGER},
+      #{content,jdbcType=LONGVARCHAR},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      title = #{title,jdbcType=VARCHAR},
+      guidelines_id = #{guidelinesId,jdbcType=BIGINT},
+      guidelines_name = #{guidelinesName,jdbcType=VARCHAR},
+      publisher_id = #{publisherId,jdbcType=BIGINT},
+      publisher_name = #{publisherName,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.seeini.stack.entity.GuidelinesDetail" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into stack.t_guidelines_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="guidelinesId != null">
+        guidelines_id,
+      </if>
+      <if test="guidelinesName != null">
+        guidelines_name,
+      </if>
+      <if test="publisherId != null">
+        publisher_id,
+      </if>
+      <if test="publisherName != null">
+        publisher_name,
+      </if>
+      <if test="publishTime != null">
+        publish_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="guidelinesId != null">
+        #{guidelinesId,jdbcType=BIGINT},
+      </if>
+      <if test="guidelinesName != null">
+        #{guidelinesName,jdbcType=VARCHAR},
+      </if>
+      <if test="publisherId != null">
+        #{publisherId,jdbcType=BIGINT},
+      </if>
+      <if test="publisherName != null">
+        #{publisherName,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null">
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="guidelinesId != null">
+        guidelines_id = #{guidelinesId,jdbcType=BIGINT},
+      </if>
+      <if test="guidelinesName != null">
+        guidelines_name = #{guidelinesName,jdbcType=VARCHAR},
+      </if>
+      <if test="publisherId != null">
+        publisher_id = #{publisherId,jdbcType=BIGINT},
+      </if>
+      <if test="publisherName != null">
+        publisher_name = #{publisherName,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null">
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,7 +1,6 @@
 package com.seeini.common.shiro;
 
-import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
-import com.seeini.system.properties.ShiroProperties;
+import com.seeini.common.redis.RedisConfig;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
@@ -12,13 +11,13 @@ import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
-import org.crazycake.shiro.RedisCacheManager;
-import org.crazycake.shiro.RedisManager;
-import org.crazycake.shiro.RedisSessionDAO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.util.Base64Utils;
 
 import java.nio.charset.StandardCharsets;
@@ -27,22 +26,43 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 
+@PropertySource("classpath:shiro.properties")
 @Configuration
 public class ShiroConfig {
 
-    @Autowired
-    private ShiroProperties shiroProperties;
+//    @Autowired
+//    private ShiroProperties shiroProperties;
 
-    @Value("${spring.redis.host}")
-    private String host;
-    @Value("${spring.redis.port}")
-    private int port;
-    @Value("${spring.redis.password:}")
-    private String password;
-    @Value("${spring.redis.timeout}")
-    private int timeout;
-    @Value("${spring.redis.database:0}")
-    private int database;
+    private RedisConfig redisConfig;
+
+    @Value("${login.url}")
+    private String loginUrl;
+
+    @Value("${anon.url}")
+    private String anonUrl;
+
+    @Value("${logout.url}")
+    private String logoutUrl;
+
+    @Value("${unauthorized.url}")
+    private String unauthorizedUrl;
+
+    @Value("${success.url}")
+    private String successUrl;
+
+    @Value("${cookie.timeout}")
+    private Integer cookieTimeout;
+
+//    @Value("${spring.redis.host}")
+//    private String host;
+//    @Value("${spring.redis.port}")
+//    private int port;
+//    @Value("${spring.redis.password:}")
+//    private String password;
+//    @Value("${spring.redis.timeout}")
+//    private int timeout;
+//    @Value("${spring.redis.database:0}")
+//    private int database;
 
 
     /**
@@ -75,20 +95,20 @@ public class ShiroConfig {
         // 设置 securityManager
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         // 登录的 url
-        shiroFilterFactoryBean.setLoginUrl(shiroProperties.getLoginUrl());
+        shiroFilterFactoryBean.setLoginUrl(loginUrl);
         // 登录成功后跳转的 url
-        shiroFilterFactoryBean.setSuccessUrl(shiroProperties.getSuccessUrl());
+        shiroFilterFactoryBean.setSuccessUrl(successUrl);
         // 未授权 url
-        shiroFilterFactoryBean.setUnauthorizedUrl(shiroProperties.getUnauthorizedUrl());
+        shiroFilterFactoryBean.setUnauthorizedUrl(unauthorizedUrl);
 
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // 设置免认证 url
-        String[] anonUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(shiroProperties.getAnonUrl(), ",");
+        String[] anonUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(anonUrl, ",");
         for (String url : anonUrls) {
             filterChainDefinitionMap.put(url, "anon");
         }
         // 配置退出过滤器，其中具体的退出代码 Shiro已经替我们实现了
-        filterChainDefinitionMap.put(shiroProperties.getLogoutUrl(), "logout");
+        filterChainDefinitionMap.put(logoutUrl, "logout");
 
         // 除上以外所有 url都必须认证通过才可以访问，未通过认证自动访问 LoginUrl
         filterChainDefinitionMap.put("/**", "user");
@@ -121,7 +141,7 @@ public class ShiroConfig {
         // 设置 cookie 名称，对应 login.html 页面的 <input type="checkbox" name="rememberMe"/>
         SimpleCookie cookie = new SimpleCookie("rememberMe");
         // 设置 cookie 的过期时间，单位为秒，这里为一天
-        cookie.setMaxAge(shiroProperties.getCookieTimeout());
+        cookie.setMaxAge(cookieTimeout);
         return cookie;
     }
 

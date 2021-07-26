@@ -1,43 +1,25 @@
 package com.seeini.oauth.service;
 
-import com.seeini.oauth.mapper.UserMapper;
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
+import com.seeini.common.request.RequestData;
+import com.seeini.common.response.ResponseData;
 import com.seeini.oauth.entity.User;
-@Service
-public class UserService{
 
-    @Resource
-    private UserMapper userMapper;
+/**
+ * @Author Vincent
+ * @Date 2021/7/26 13:17
+ * @Version 1.0
+ * @Description
+ */
+public interface UserService {
 
-    
-    public int deleteByPrimaryKey(String userId) {
-        return userMapper.deleteByPrimaryKey(userId);
-    }
+    boolean hasUser();
 
-    
-    public int insert(User record) {
-        return userMapper.insert(record);
-    }
+    /**
+     * 用户校验
+     * @param user
+     * @return
+     */
+    ResponseData checkUser(User user);
 
-    
-    public int insertSelective(User record) {
-        return userMapper.insertSelective(record);
-    }
-
-    
-    public User selectByPrimaryKey(String userId) {
-        return userMapper.selectByPrimaryKey(userId);
-    }
-
-    
-    public int updateByPrimaryKeySelective(User record) {
-        return userMapper.updateByPrimaryKeySelective(record);
-    }
-
-    
-    public int updateByPrimaryKey(User record) {
-        return userMapper.updateByPrimaryKey(record);
-    }
-
+    public User getUserByAccount(String account);
 }

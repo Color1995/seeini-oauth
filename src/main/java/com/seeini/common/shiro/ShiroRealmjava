@@ -1,12 +1,8 @@
 package com.seeini.common.shiro;
 
 
-import com.seeini.system.entity.Menu;
-import com.seeini.system.entity.Role;
-import com.seeini.system.entity.User;
-import com.seeini.system.service.MenuService;
-import com.seeini.system.service.RoleService;
-import com.seeini.system.service.UserService;
+import com.seeini.oauth.entity.User;
+import com.seeini.oauth.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -16,10 +12,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * 自定义实现 ShiroRealm，包含认证和授权两大模块
@@ -31,10 +23,10 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private RoleService roleService;
-    @Autowired
-    private MenuService menuService;
+//    @Autowired
+//    private RoleService roleService;
+//    @Autowired
+//    private MenuService menuService;
 
     /**
      * 授权模块，获取用户角色和权限
@@ -50,17 +42,17 @@ public class ShiroRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 
         // 获取用户角色集
-        List<Role> roleList = this.roleService.getUserRoleByAccount(account);
-        if (!roleList.isEmpty()){
-            Set<String> roleSet = roleList.stream().map(Role::getRoleName).collect(Collectors.toSet());
-            simpleAuthorizationInfo.setRoles(roleSet);
-        }
+//        List<Role> roleList = this.roleService.getUserRoleByAccount(account);
+//        if (!roleList.isEmpty()){
+//            Set<String> roleSet = roleList.stream().map(Role::getRoleName).collect(Collectors.toSet());
+//            simpleAuthorizationInfo.setRoles(roleSet);
+//        }
         // 获取用户权限集
-        List<Menu> permissionList = this.menuService.getUserPermissionsByAccount(account);
-        if (permissionList.size()>0){
-            Set<String> permissionSet = permissionList.stream().map(Menu::getPerms).collect(Collectors.toSet());
-            simpleAuthorizationInfo.setStringPermissions(permissionSet);
-        }
+//        List<Menu> permissionList = this.menuService.getUserPermissionsByAccount(account);
+//        if (permissionList.size()>0){
+//            Set<String> permissionSet = permissionList.stream().map(Menu::getPerms).collect(Collectors.toSet());
+//            simpleAuthorizationInfo.setStringPermissions(permissionSet);
+//        }
 
         return simpleAuthorizationInfo;
     }
@@ -79,13 +71,13 @@ public class ShiroRealm extends AuthorizingRealm {
         String password = new String((char[]) token.getCredentials());
 
         // 通过用户名到数据库查询用户信息
-        User user = this.userService.getUserByAccount(account);
+        User user = userService.getUserByAccount(account);
 
         if (user == null)
             throw new UnknownAccountException("账号未注册！");
         if (!StringUtils.equals(password, user.getPassword()))
             throw new IncorrectCredentialsException("用户名或密码错误！");
-        if (User.STATUS_LOCK.equals(user.getStatus()))
+        if ("0".equals(user.getStatus()))
             throw new LockedAccountException("账号已被锁定,请联系管理员！");
         return new SimpleAuthenticationInfo(user, password, getName());
     }

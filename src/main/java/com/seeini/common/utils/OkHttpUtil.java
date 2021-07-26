@@ -3,7 +3,6 @@ package com.seeini.common.utils;
 
 import com.google.gson.Gson;
 import okhttp3.*;
-
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
