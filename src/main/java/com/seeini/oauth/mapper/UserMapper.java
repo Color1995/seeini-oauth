@@ -4,7 +4,7 @@ import com.seeini.oauth.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @Author Vincent
+ * @Author Color
  * @Date 2021/7/26 11:42
  * @Version 1.0
  * @Description

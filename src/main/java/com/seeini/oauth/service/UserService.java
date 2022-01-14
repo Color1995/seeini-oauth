@@ -5,7 +5,7 @@ import com.seeini.common.response.ResponseData;
 import com.seeini.oauth.entity.User;
 
 /**
- * @Author Vincent
+ * @Author Color
  * @Date 2021/7/26 13:17
  * @Version 1.0
  * @Description

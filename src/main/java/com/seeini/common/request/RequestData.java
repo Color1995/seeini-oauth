@@ -1,11 +1,10 @@
 package com.seeini.common.request;
 
-import com.qcloud.cos.utils.Jackson;
 import com.seeini.common.pageinfo.PageInfo;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * @Author Vincent
+ * @Author Color
  * @Date 2021/7/13 18:26
  * @Version 1.0
  * @Description

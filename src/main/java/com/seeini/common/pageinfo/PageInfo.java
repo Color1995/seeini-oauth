@@ -3,20 +3,18 @@ package com.seeini.common.pageinfo;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.List;
-
 /**
- * @Author Vincent
+ * @Author Color
  * @Date 2021/7/14 9:34
  * @Version 1.0
  * @Description
  */
-public class PageInfo{
+public class PageInfo {
     @ApiModelProperty(value="页面下标")
     private Integer pageNum;
 
     @ApiModelProperty(value="条数/页面")
-    private Integer pageRows;
+    private Integer pageSize;
 
     @ApiModelProperty(value="总页数")
     private Integer totalPages;
@@ -35,12 +33,12 @@ public class PageInfo{
         this.pageNum = pageNum;
     }
 
-    public Integer getPageRows() {
-        return pageRows;
+    public Integer getPageSize() {
+        return pageSize;
     }
 
-    public void setPageRows(Integer pageRows) {
-        this.pageRows = pageRows;
+    public void setPageSize(Integer PageSize) {
+        this.pageSize = pageSize;
     }
 
     public Integer getTotalPages() {

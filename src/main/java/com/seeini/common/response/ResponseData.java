@@ -4,12 +4,12 @@ import com.seeini.common.pageinfo.PageInfo;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * @Author Vincent
+ * @Author Color
  * @Date 2021/7/14 14:02
  * @Version 1.0
  * @Description
  */
-public class ResponseData<T> {
+public class ResponseData {
 
     @ApiModelProperty(value="状态", position=1)
     private Integer code;
@@ -18,21 +18,15 @@ public class ResponseData<T> {
     private String msg;
 
     @ApiModelProperty(value="数据", position=3)
-    private T data;
+    private Object data;
 
     @ApiModelProperty(value="分页", position=4)
     private PageInfo pageInfo;
 
     public ResponseData() {
-//        this.code = ResponseStatus.OK.code();
-//        this.msg = ResponseStatus.OK.msg();
+        this.code = ResponseStatus.NO_STATUS.getCode();
+        this.msg = ResponseStatus.NO_STATUS.getMsg();
 //        this.pageInfo = new PageInfo();
-    }
-
-    public ResponseData(T data) {
-//        this.code = code;
-//        this.msg = msg;
-        this.data=data;
     }
 
     public ResponseData(ResponseStatus status) {
@@ -41,18 +35,13 @@ public class ResponseData<T> {
     }
 
 
-//    public ResponseData(Integer code, String msg) {
-//        this.code = code;
-//        this.msg = msg;
-//    }
-
-    public ResponseData(ResponseStatus status, T data) {
+    public ResponseData(ResponseStatus status, Object data) {
         this.code = status.getCode();
         this.msg = status.getMsg();
         this.data = data;
     }
 
-    public ResponseData(ResponseStatus status, T data, PageInfo pageInfo) {
+    public ResponseData(ResponseStatus status, Object data, PageInfo pageInfo) {
         this.code = status.getCode();
         this.msg = status.getMsg();
         this.data = data;
@@ -62,14 +51,7 @@ public class ResponseData<T> {
     public ResponseData(ResponseStatus status, com.github.pagehelper.PageInfo pageInfo) {
         this.code = status.getCode();
         this.msg = status.getMsg();
-        this.data=(T) pageInfo.getList();
-        this.pageInfo=pagehelper2PageInfo(pageInfo);
-    }
-
-    public ResponseData(ResponseStatus status, T data, com.github.pagehelper.PageInfo pageInfo) {
-        this.code = status.getCode();
-        this.msg = status.getMsg();
-        this.data = data;
+        this.data= pageInfo.getList();
         this.pageInfo=pagehelper2PageInfo(pageInfo);
     }
 
@@ -90,11 +72,11 @@ public class ResponseData<T> {
         this.msg = msg;
     }
 
-    public T getData() {
+    public Object getData() {
         return data;
     }
 
-    public void setData(T data) {
+    public void setData(Object data) {
         this.data = data;
 
     }
@@ -119,7 +101,7 @@ public class ResponseData<T> {
         pageInfoVO.setTotalRows(pageInfo.getTotal());
         pageInfoVO.setTotalPages(pageInfo.getPages());
         pageInfoVO.setPageNum(pageInfo.getPageNum());
-        pageInfoVO.setPageRows(pageInfo.getPageSize());
+        pageInfoVO.setPageSize(pageInfo.getPageSize());
         return pageInfoVO;
     }
 }

@@ -12,7 +12,7 @@
     <artifactId>oauth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>stack</name>
+    <name>oauth</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -54,7 +54,7 @@
             <artifactId>spring-session-data-redis</artifactId>
         </dependency>
 
-        <!--	FTP	-->
+        <!-- FTP	-->
         <dependency>
             <groupId>org.springframework.integration</groupId>
             <artifactId>spring-integration-ftp</artifactId>
@@ -119,25 +119,25 @@
 
 
         <!--springboot 整合的 rabbitMQ-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-amqp</artifactId>-->
+<!--        </dependency>-->
 
         <!--springboot 整合的 Kafka-->
         <!-- https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka -->
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-            <version>2.7.3</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.kafka</groupId>-->
+<!--            <artifactId>spring-kafka</artifactId>-->
+<!--            <version>2.7.3</version>-->
+<!--        </dependency>-->
 
 
         <!-- 任务调度 -->
-        <dependency>
-            <groupId>org.quartz-scheduler</groupId>
-            <artifactId>quartz</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.quartz-scheduler</groupId>-->
+<!--            <artifactId>quartz</artifactId>-->
+<!--        </dependency>-->
 
         <!-- Token -->
         <!-- https://mvnrepository.com/artifact/com.auth0/java-jwt -->
@@ -248,11 +248,11 @@
 
 
         <!--腾讯云对象存储-->
-        <dependency>
-            <groupId>com.qcloud</groupId>
-            <artifactId>cos_api</artifactId>
-            <version>5.6.24</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.qcloud</groupId>-->
+<!--            <artifactId>cos_api</artifactId>-->
+<!--            <version>5.6.24</version>-->
+<!--        </dependency>-->
 
         <!--	war包	-->
         <dependency>
@@ -302,11 +302,11 @@
 
 
         <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
-        <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>mssql-jdbc</artifactId>
-            <version>9.2.1.jre15</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.microsoft.sqlserver</groupId>-->
+<!--            <artifactId>mssql-jdbc</artifactId>-->
+<!--            <version>9.2.1.jre15</version>-->
+<!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15to18 -->
         <dependency>

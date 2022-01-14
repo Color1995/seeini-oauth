@@ -86,13 +86,14 @@ public enum ResponseStatus {
     LOOP_DETECTED(508, "Loop Detected"),
     BANDWIDTH_LIMIT_EXCEEDED(509, "Bandwidth Limit Exceeded"),
     NOT_EXTENDED(510, "Not Extended"),
-    NETWORK_AUTHENTICATION_REQUIRED(511, "Network Authentication Required");
+    NETWORK_AUTHENTICATION_REQUIRED(511, "Network Authentication Required"),
+    NO_STATUS(999, "No Status");
 
     private int code;
 
     private String msg;
 
-    private ResponseStatus(int code, String msg) {
+    ResponseStatus(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }

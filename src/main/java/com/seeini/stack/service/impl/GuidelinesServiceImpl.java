@@ -93,7 +93,7 @@ public class GuidelinesServiceImpl implements GuidelinesService {
     public ResponseData list(RequestData requestData) {
 
         int pageNum = requestData.getPageInfo().getPageNum();
-        int pageRows = requestData.getPageInfo().getPageRows();
+        int pageRows = requestData.getPageInfo().getPageSize();
         String sortArr = requestData.getPageInfo().getOrderArr();
 
         PageHelper.startPage(pageNum,pageRows,sortArr);

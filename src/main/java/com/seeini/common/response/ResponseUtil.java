@@ -3,27 +3,27 @@ package com.seeini.common.response;
 import com.seeini.common.pageinfo.PageInfo;
 
 /**
- * @Author Vincent
+ * @Author Color
  * @Date 2021/7/13 17:37
  * @Version 1.0
  * @Description
  */
 public class ResponseUtil {
 
-    public static ResponseData success(ResponseData data){
-        return data;
-    }
+//    public static ResponseData success(ResponseData data){
+//        return data;
+//    }
 
     /**
      * 默认 success
      * @return
      */
     public static ResponseData success(){
-        return new ResponseData();
+        return new ResponseData(ResponseStatus.SUCCESS);
     }
 
     public static ResponseData success(Object data){
-        return new ResponseData(data);
+        return new ResponseData(ResponseStatus.SUCCESS,data);
     }
 
 
@@ -57,7 +57,7 @@ public class ResponseUtil {
      * @return
      */
     public static ResponseData success(Object data, com.github.pagehelper.PageInfo pageInfo){
-        return new ResponseData(ResponseStatus.SUCCESS, data, pageInfo);
+        return new ResponseData(ResponseStatus.SUCCESS, pageInfo);
     }
 
     /**
@@ -68,13 +68,27 @@ public class ResponseUtil {
         return new ResponseData(ResponseStatus.BAD_REQUEST);
     }
 
-    /**
-     *
-     * @param data 错误详细
-     * @return
-     */
     public static ResponseData error(Object data){
         return new ResponseData(ResponseStatus.BAD_REQUEST,data);
+    }
+
+    /**
+     * 指定错误代码
+     * @param responseStatus
+     * @return
+     */
+    public static ResponseData error(ResponseStatus responseStatus){
+        return new ResponseData(responseStatus);
+    }
+
+    /**
+     *
+     * @param responseStatus 指定错误代码
+     * @param data 指定错误信息
+     * @return
+     */
+    public static ResponseData error(ResponseStatus responseStatus, Object data){
+        return new ResponseData(responseStatus,data);
     }
 
 }
